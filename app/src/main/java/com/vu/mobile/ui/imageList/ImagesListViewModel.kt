@@ -3,28 +3,28 @@ package com.kazi.test.ui.employeesList
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.kazi.test.data.repository.UserRepository
-import com.kazi.test.ui.employeesList.view.IVIewEmployerList
+import com.kazi.test.ui.employeesList.view.IVIewImageList
 import com.kazi.test.utils.Coroutines
 import com.kazi.test.utils.exception.ApiException
 import com.kazi.test.utils.exception.NoInternetException
 import com.vu.mobile.data.model.Image
 
 
-class EmployeesListViewModel(val repository: UserRepository) : ViewModel() {
+class ImagesListViewModel(val repository: UserRepository) : ViewModel() {
 
     private var isLoading: Boolean = false
     var currentPage = 1
 
     var listOfEmployees: MutableLiveData<ArrayList<Image>> = MutableLiveData()
 
-    var view: IVIewEmployerList? = null
+    var view: IVIewImageList? = null
 
     init {
-        getEmployeesList()
+        getInitImageList()
     }
 
 
-    fun getEmployeesList() {
+    fun getInitImageList() {
         view?.showProgress()
         Coroutines.main {
             try {

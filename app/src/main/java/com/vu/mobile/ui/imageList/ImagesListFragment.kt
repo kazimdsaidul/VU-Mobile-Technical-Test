@@ -16,7 +16,7 @@ import com.cloudwell.paywell.consumer.utils.viewUtil.hide
 import com.cloudwell.paywell.consumer.utils.viewUtil.show
 import com.kazi.test.ui.employeesList.adapter.ImageItem
 import com.kazi.test.ui.employeesList.employeesViewModelFactory.ImagesViewModelFactory
-import com.kazi.test.ui.employeesList.view.IVIewEmployerList
+import com.kazi.test.ui.employeesList.view.IVIewImageList
 import com.kazi.test.utils.Coroutines
 import com.vu.mobile.R
 import com.vu.mobile.data.model.Image
@@ -29,13 +29,13 @@ import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
 
 
-class EmployeesListFragment : Fragment(), IVIewEmployerList, KodeinAware {
+class ImagesListFragment : Fragment(), IVIewImageList, KodeinAware {
 
 
     override val kodein by kodein()
 
     private val factory: ImagesViewModelFactory by instance()
-    private lateinit var viewModel: EmployeesListViewModel
+    private lateinit var viewModel: ImagesListViewModel
 
     val gridLayoutManager = GridLayoutManager(context, 2);
 
@@ -46,7 +46,7 @@ class EmployeesListFragment : Fragment(), IVIewEmployerList, KodeinAware {
         savedInstanceState: Bundle?
     ): View? {
 
-        viewModel = ViewModelProviders.of(this, factory).get(EmployeesListViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, factory).get(ImagesListViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_employees_list, container, false)
 
         return root
