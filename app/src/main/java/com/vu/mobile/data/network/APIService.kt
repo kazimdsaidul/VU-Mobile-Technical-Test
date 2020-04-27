@@ -10,6 +10,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 
 /**
@@ -43,9 +44,8 @@ public interface APIService {
     }
 
 
-    @GET("api/users?page=1")
-    suspend fun getEmployees(
-    ): Response<ResposeData>
+    @GET("api/users")
+    suspend fun getEmployees(@Query("page") page: Int): Response<ResposeData>
 
 
 }

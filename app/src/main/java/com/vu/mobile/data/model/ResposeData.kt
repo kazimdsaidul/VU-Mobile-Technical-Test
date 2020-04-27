@@ -6,7 +6,7 @@ class ResposeData {
     @SerializedName("ad")
     var ad: Ad? = null
     @SerializedName("data")
-    var images: List<Image>? = null
+    var images: ArrayList<Image> = ArrayList()
     @SerializedName("page")
     var page: Long? = null
     @SerializedName("per_page")

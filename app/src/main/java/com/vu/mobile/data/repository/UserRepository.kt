@@ -13,8 +13,8 @@ class UserRepository(
 
 ) : SafeApiRequest() {
 
-    suspend fun getEmployeesAPI(): ResposeData {
-        return apiRequest { apiService.getEmployees() }
+    suspend fun getEmployeesAPI(page: Int): ResposeData {
+        return apiRequest { apiService.getEmployees(page) }
     }
 
 
