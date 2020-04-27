@@ -19,13 +19,17 @@ class EmployeesListViewModel(val repository: UserRepository) : ViewModel() {
 
     var view: IVIewEmployerList? = null
 
+    init {
+        getEmployeesList()
+    }
+
 
     fun getEmployeesList() {
         view?.showProgress()
         Coroutines.main {
             try {
                 isLoading = true
-                val employees = repository.getEmployeesAPI(currentPage)
+                val employees = repository.callImagesAPI(currentPage)
                 listOfEmployees.value = employees.images
                 isLoading = false
                 view?.hiddenProgress()
@@ -33,7 +37,7 @@ class EmployeesListViewModel(val repository: UserRepository) : ViewModel() {
             } catch (e: ApiException) {
                 view?.onFailure(e.message)
             } catch (e: NoInternetException) {
-                view?.noInternetConnectionFound()
+                view?.onFailure("No internet found!!!")
             }
         }
 
@@ -55,12 +59,12 @@ class EmployeesListViewModel(val repository: UserRepository) : ViewModel() {
                 Coroutines.main {
                     try {
                         view?.hiddenProgress()
-                        val employees = repository.getEmployeesAPI(currentPage)
+                        val employees = repository.callImagesAPI(currentPage)
                         val old = listOfEmployees.value
                         if (employees.images.size > 0) {
                             old?.let { it1 ->
-                                employees.images.addAll(it1)
-                                listOfEmployees.value = employees.images
+                                old.addAll(it1)
+                                listOfEmployees.value = old
                             }
                         } else {
                             currentPage--
@@ -71,7 +75,7 @@ class EmployeesListViewModel(val repository: UserRepository) : ViewModel() {
                     } catch (e: ApiException) {
                         view?.onFailure(e.message)
                     } catch (e: NoInternetException) {
-                        view?.noInternetConnectionFound()
+                        view?.onFailure("No internet found!!!")
                     }
 
                 }

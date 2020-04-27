@@ -6,7 +6,7 @@ import com.kazi.test.data.network.APIService
 import com.kazi.test.data.network.interceptor.HeaderTokenInterceptor
 import com.kazi.test.data.network.interceptor.NetworkConnectionInterceptor
 import com.kazi.test.data.repository.UserRepository
-import com.kazi.test.ui.employeesList.employeesViewModelFactory.EmployeesViewModelFactory
+import com.kazi.test.ui.employeesList.employeesViewModelFactory.ImagesViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
@@ -30,7 +30,7 @@ public open class AppController : Application(), KodeinAware {
         bind() from singleton { APIService(instance()) }
         bind() from singleton { UserRepository(instance()) }
 
-        bind() from provider { EmployeesViewModelFactory(instance()) }
+        bind() from provider { ImagesViewModelFactory(instance()) }
 
     }
 

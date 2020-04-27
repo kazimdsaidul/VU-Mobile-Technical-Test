@@ -1,5 +1,6 @@
 package com.kazi.test.ui.employeesList
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,11 +15,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cloudwell.paywell.consumer.utils.viewUtil.hide
 import com.cloudwell.paywell.consumer.utils.viewUtil.show
 import com.kazi.test.ui.employeesList.adapter.ImageItem
-import com.kazi.test.ui.employeesList.employeesViewModelFactory.EmployeesViewModelFactory
+import com.kazi.test.ui.employeesList.employeesViewModelFactory.ImagesViewModelFactory
 import com.kazi.test.ui.employeesList.view.IVIewEmployerList
 import com.kazi.test.utils.Coroutines
 import com.vu.mobile.R
 import com.vu.mobile.data.model.Image
+import com.vu.mobile.ui.imageList.imageDetais.ImageDetailsActivity
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.fragment_employees_list.*
@@ -29,10 +31,10 @@ import org.kodein.di.generic.instance
 
 class EmployeesListFragment : Fragment(), IVIewEmployerList, KodeinAware {
 
-    private var directionDown: Boolean = false
+
     override val kodein by kodein()
 
-    private val factory: EmployeesViewModelFactory by instance()
+    private val factory: ImagesViewModelFactory by instance()
     private lateinit var viewModel: EmployeesListViewModel
 
     val gridLayoutManager = GridLayoutManager(context, 2);
@@ -53,7 +55,6 @@ class EmployeesListFragment : Fragment(), IVIewEmployerList, KodeinAware {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel.view = this
-        viewModel.getEmployeesList()
         bindUI()
     }
 
@@ -68,7 +69,6 @@ class EmployeesListFragment : Fragment(), IVIewEmployerList, KodeinAware {
 
 
     private fun initRecyclerView(quoteItem: List<ImageItem>) {
-
         val mAdapter = GroupAdapter<ViewHolder>().apply {
             addAll(quoteItem)
         }
@@ -90,12 +90,7 @@ class EmployeesListFragment : Fragment(), IVIewEmployerList, KodeinAware {
             }
         })
 
-
-
     }
-
-
-
 
 
     override fun noInternetConnectionFound() {
@@ -116,14 +111,14 @@ class EmployeesListFragment : Fragment(), IVIewEmployerList, KodeinAware {
 
     }
 
-
     private fun List<Image>.toImageItem() : List<ImageItem>{
         return this.map {
             ImageItem(it, object : ImageItem.OnLikeClickedListener {
                 override fun onLikeClicked(item: Image) {
-                    
+                    val intent = Intent(activity?.applicationContext, ImageDetailsActivity::class.java)
+                    intent.putExtra("image_url", item.avatar)
+                    startActivity(intent)
                 }
-
             })
         }
     }

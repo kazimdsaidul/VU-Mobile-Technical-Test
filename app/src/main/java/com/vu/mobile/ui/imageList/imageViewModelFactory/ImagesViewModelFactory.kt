@@ -9,7 +9,7 @@ import com.kazi.test.ui.employeesList.EmployeesListViewModel
 /**
  * Created by Kazi Md. Saidul Email: Kazimdsaidul@gmail.com  Mobile: +8801675349882 on 2019-09-04.
  */
-class EmployeesViewModelFactory(private val repository: UserRepository) :
+class ImagesViewModelFactory(private val repository: UserRepository) :
     ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {

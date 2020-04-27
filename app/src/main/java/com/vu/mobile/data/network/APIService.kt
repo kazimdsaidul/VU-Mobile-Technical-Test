@@ -45,7 +45,7 @@ public interface APIService {
 
 
     @GET("api/users")
-    suspend fun getEmployees(@Query("page") page: Int): Response<ResposeData>
+    suspend fun getImage(@Query("page") page: Int): Response<ResposeData>
 
 
 }
