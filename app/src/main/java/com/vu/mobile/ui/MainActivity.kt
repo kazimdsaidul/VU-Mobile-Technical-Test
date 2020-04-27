@@ -1,7 +1,8 @@
-package com.vu.mobile
+package com.vu.mobile.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.vu.mobile.R
 
 class MainActivity : AppCompatActivity() {
 
