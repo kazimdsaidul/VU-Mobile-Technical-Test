@@ -2,7 +2,7 @@ package com.vu.mobile.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.kazi.test.ui.employeesList.EmployeesListFragment
+import com.kazi.test.ui.employeesList.ImagesListFragment
 import com.vu.mobile.R
 
 class MainActivity : AppCompatActivity() {
@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.fragmentContainer, EmployeesListFragment())
+                .replace(R.id.fragmentContainer, ImagesListFragment())
                 .commit()
         }
     }
