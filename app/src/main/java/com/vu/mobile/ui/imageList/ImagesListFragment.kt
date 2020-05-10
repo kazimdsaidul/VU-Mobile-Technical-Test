@@ -19,17 +19,19 @@ import com.kazi.test.ui.employeesList.employeesViewModelFactory.ImagesViewModelF
 import com.kazi.test.ui.employeesList.view.IVIewImageList
 import com.kazi.test.utils.Coroutines
 import com.vu.mobile.R
+import com.vu.mobile.base.BaseFragment
 import com.vu.mobile.data.model.Image
 import com.vu.mobile.ui.imageList.imageDetais.ImageDetailsActivity
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.fragment_employees_list.*
 import org.kodein.di.KodeinAware
+import org.kodein.di.android.kodein
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
 
 
-class ImagesListFragment : Fragment(), IVIewImageList, KodeinAware {
+class ImagesListFragment : BaseFragment(), IVIewImageList, KodeinAware {
 
 
     override val kodein by kodein()
@@ -90,21 +92,6 @@ class ImagesListFragment : Fragment(), IVIewImageList, KodeinAware {
             }
         })
 
-    }
-
-
-    override fun noInternetConnectionFound() {
-    }
-
-    override fun showProgress() {
-    }
-
-    override fun hiddenProgress() {
-    }
-
-    override fun onFailure(message: String?) {
-
-        Toast.makeText(activity?.applicationContext , message, Toast.LENGTH_LONG).show()
     }
 
     override fun openEmpDetailsActivity(employee: Image) {

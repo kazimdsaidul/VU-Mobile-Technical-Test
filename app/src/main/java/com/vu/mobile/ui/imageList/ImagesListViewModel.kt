@@ -7,22 +7,21 @@ import com.kazi.test.ui.employeesList.view.IVIewImageList
 import com.kazi.test.utils.Coroutines
 import com.kazi.test.utils.exception.ApiException
 import com.kazi.test.utils.exception.NoInternetException
+import com.vu.mobile.base.BaseViewModel
+import com.vu.mobile.base.IView
 import com.vu.mobile.data.model.Image
 
 
-class ImagesListViewModel(val repository: UserRepository) : ViewModel() {
+class ImagesListViewModel(val repository: UserRepository) : BaseViewModel() {
 
     private var isLoading: Boolean = false
     var currentPage = 1
-
     var listOfEmployees: MutableLiveData<ArrayList<Image>> = MutableLiveData()
-
     var view: IVIewImageList? = null
 
     init {
         getInitImageList()
     }
-
 
     fun getInitImageList() {
         view?.showProgress()
@@ -34,14 +33,10 @@ class ImagesListViewModel(val repository: UserRepository) : ViewModel() {
                 isLoading = false
                 view?.hiddenProgress()
 
-            } catch (e: ApiException) {
-                view?.onFailure(e.message)
-            } catch (e: NoInternetException) {
-                view?.onFailure("No internet found!!!")
+            } catch (ex: Exception) {
+                handleException(ex, view)
             }
         }
-
-
     }
 
     fun onItemClick(employee: Image) {
@@ -73,15 +68,12 @@ class ImagesListViewModel(val repository: UserRepository) : ViewModel() {
                         isLoading = false
 
                     } catch (e: ApiException) {
-                        view?.onFailure(e.message)
-                    } catch (e: NoInternetException) {
-                        view?.onFailure("No internet found!!!")
+                        handleException(e,view)
                     }
 
                 }
 
             }
-
 
         }
     }

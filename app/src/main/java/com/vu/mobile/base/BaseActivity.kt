@@ -13,8 +13,6 @@ import androidx.appcompat.app.AppCompatActivity
  * Created by Kazi Md. Saidul Email: Kazimdsaidul@gmail.com  Mobile: +8801675349882 on 2019-09-08.
  */
 open class BaseActivity : AppCompatActivity() {
-
-
     fun setToolbar(title: String, color: Int) {
         assert(supportActionBar != null)
         if (supportActionBar != null) {
